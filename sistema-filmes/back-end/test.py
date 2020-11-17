@@ -1,5 +1,5 @@
 import os
-from models import Filme
+from models import Filme, Review, Espectador
 from config import db, db_file
 
 
@@ -30,6 +30,8 @@ if __name__ == '__main__':
                 distribuidora ='Miramax Films',
                 diretores ='Quentin Tarantino')
     
+
+
     db.session.add(f1)
     db.session.add(f2)
     db.session.commit()
@@ -37,3 +39,22 @@ if __name__ == '__main__':
     print(f1)
     print(f2)
     print(f2.json())
+
+    espect1 = Espectador(nome = "Gabrielen",
+                        idade = "17",
+                        profissao = "Estudiante"
+    )
+
+    review1 = Review(nota = "10000",
+                    data = "31/10/1507",
+                    opiniao = "Muito bom",
+                    filme = f2,
+                    espectador = espect1
+    )
+
+    db.session.add(espect1)
+    db.session.add(review1)
+    db.session.commit()
+
+    print(espect1)
+    print(review1)
